@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "npm i",
     "start": "node app",
-    "prebuild": "node run setup",
+    "prebuild": "npm run setup",
     "build": "webpack --config webpack.js"
   },
   "author": "",
