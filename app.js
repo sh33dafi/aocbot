@@ -1,9 +1,7 @@
-try {
-  require('dotenv').config();
-} catch (e) {}
+require('dotenv').config({silent: true});
 
 const AOCBot = require('./AOCBot');
-const LeaderBoard = require('./LeaderBoard');
+const LeaderBoard = require('./Leaderboard');
 
 var token = process.env.SLACK_KEY;
 var botId = process.env.BOT_ID;

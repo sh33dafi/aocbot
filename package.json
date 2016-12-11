@@ -4,8 +4,9 @@
   "description": "Advent of code leaderboard slackbot",
   "main": "app.js",
   "scripts": {
+    "setup": "npm i",
     "start": "node app",
-    "prebuild": "npm i",
+    "prebuild": "node run setup",
     "build": "webpack --config webpack.js"
   },
   "author": "",
