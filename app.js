@@ -1,4 +1,6 @@
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch (e) {}
 
 const AOCBot = require('./AOCBot');
 const LeaderBoard = require('./LeaderBoard');

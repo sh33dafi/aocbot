@@ -1,4 +1,4 @@
 FROM mhart/alpine-node:6
 ADD . .
-RUN npm install
-CMD ["node", "app.js"]
+RUN npm run build
+CMD ["node", "dist/build.js"]

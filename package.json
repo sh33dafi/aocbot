@@ -4,7 +4,9 @@
   "description": "Advent of code leaderboard slackbot",
   "main": "app.js",
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "prebuild": "npm i",
+    "build": "webpack --config webpack.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,7 +14,8 @@
     "dotenv": "2.0.0",
     "lodash": "4.17.2",
     "restify": "4.3.0",
-    "slackbots": "0.5.3"
+    "slackbots": "0.5.3",
+    "webpack": "1.14.0"
   },
   "devDependencies": {}
 }
