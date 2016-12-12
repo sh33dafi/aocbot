@@ -15,11 +15,11 @@ var aocBot = new AOCBot({
 var leaderboard = new LeaderBoard(process.env.AOC_SESSION, process.env.AOC_LEADERBOARD);
 
 aocBot.run(() => {
-  const delay = 1000 * 60* 60;
-  leaderboard.getLeaders((leaders) => aocBot.postToAocChannel(`This is the current leaderboard:
-${leaders}`));
+  const delay = 1000 * 60 * 15;
+  const postMessage = (leaders) => aocBot.postToAocChannel(`This is the new leaderboard:
+${leaders}`);
+  leaderboard.getLeaders(postMessage);
   setInterval(() => {
-    leaderboard.getLeaders((leaders) => aocBot.postToAocChannel(`This is the current leaderboard:
-  ${leaders}`));
+    leaderboard.getLeaders(postMessage);
   }, delay);
 });

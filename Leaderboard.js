@@ -3,6 +3,8 @@ const _ = require('lodash');
 
 class Leaderboard {
   constructor(session, board) {
+    this.prefLeaderBoard = "";
+
     this.board = board;
     this.client = restify.createJsonClient({
       url: 'http://adventofcode.com',
@@ -18,7 +20,11 @@ class Leaderboard {
         const leaders = _.values(obj.members)
           .sort((a,b) => b.stars - a.stars )
           .map(member => `${member.name} (${member.stars})`).join("\n");
-        cb(leaders);
+
+          if (this.prefLeaderBoard !== leaders) {
+            this.prefLeaderBoard = leaders;
+            cb(leaders);
+          }
       }
     });
   }
