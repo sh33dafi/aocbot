@@ -23,7 +23,8 @@ class AocBot {
   }
 
   postToAocChannel(message) {
-    this.postMessageToChannel("adventofcode", message, {icon_emoji: ":santa:"});
+    //this.postMessageToChannel("adventofcode", message, {icon_emoji: ":santa:"});
+    console.log(message)
   }
 
   onMention(message) {
