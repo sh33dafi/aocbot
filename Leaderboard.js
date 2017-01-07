@@ -4,7 +4,7 @@ const fs = require('fs');
 
 class Leaderboard {
   constructor(session, board) {
-    this.prefLeaderBoard = "";
+    this.prefLeaderBoard = [];
 
     this.board = board;
     this.client = restify.createJsonClient({
@@ -19,7 +19,13 @@ class Leaderboard {
     this.client.get(`/2016/leaderboard/private/view/${this.board}.json`, (err, req, res, obj) => {
       if (!err) {
         const leaders = _.values(obj.members)
-          .sort((a,b) => b.local_score - a.local_score )
+          .sort((a,b) => {
+            if (a.stars === b.stars) {
+                return b.local_score - a.local_score
+            } else {
+              return b.stars - a.stars;
+            }
+          })
           .map(member => {
             return {
               name: member.name,
@@ -31,11 +37,10 @@ class Leaderboard {
 
           this.retrieveLeaders((err, prev) => {
             if (prev) {
-              console.log("ksjld");
               Leaderboard.indicateMovement(leaders, prev);
             }
 
-            if (this.prefLeaderBoard !== leaders) {
+            if (this.prefLeaderBoard.map((l) => l.id).join(",") != leaders.map((l) => l.id).join(",")) {
               this.prefLeaderBoard = leaders;
               cb(leaders);
             }
